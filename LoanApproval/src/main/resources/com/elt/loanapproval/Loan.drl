@@ -1,0 +1,29 @@
+package com.elt.loanapproval;
+
+import com.elt.loanapproval.LoanApplication;
+
+
+
+rule "loan rule1"
+ruleflow-group "loanRFG"
+
+when
+   $loanApplication:LoanApplication( amount<=loanAmount)
+then
+   System.out.println(" loan rule1"+ $loanApplication.getAccountType());
+   $loanApplication.setLoanApplicationStatus("Approved");
+   System.out.println("loan rule1 executed");
+  
+end   
+
+rule "loan rule2"
+ruleflow-group "loanRFG"
+
+when
+   $loanApplication:LoanApplication( amount>loanAmount)
+then
+   System.out.println(" loan rule"+$loanApplication.getAccountType());
+   $loanApplication.setLoanApplicationStatus("Rejected");
+   System.out.println("loan rule2 executed");
+end   
+
